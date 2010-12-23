@@ -1,14 +1,20 @@
-import urllib, json
+import urllib
+import json
 
+# TODO: Check for Platinum Stars that have already been awarded
+# TODO: Add some error handling for incorrectly-typed usernames
+# TODO: Add in some form of user input
+# TODO: Add in some memory between program runs
 
 def retrievestats():
     
-    players = "VelocityGirl"
+    platform = "PC"
+    players = "VelocityGirl,Irnn"
     fields = "weapons"
     
-    params = "players=" + players + "&fields=" + fields
-    f = urllib.urlopen("http://api.bfbcs.com/api/pc?", params)
+    URL = "http://api.bfbcs.com/api/" + platform + "?players=" + players + "&fields=" + fields
     
+    f = urllib.urlopen(URL)
     stats = json.load(f)
     f.close()
     
@@ -20,13 +26,11 @@ def printbasics(stats):
     
     for player in stats[u'players']:
         comingup = []   
-        print u"%(name)s, rank %(rank)d." % player
+        # print u"%(name)s, rank %(rank)d." % player
         for weapon in player[u'weapons']:
             kills = player[u'weapons'][weapon][u'kills']
             needxmore = nextstar(kills)
             comingup.append((needxmore,kills,str(weapon)))
-            # print weapon + " - " + str(kills) + " kills, need " + str(needxmore) + " more."
-    
         comingup.sort()
         prettify(logic(comingup))
     return
@@ -76,7 +80,6 @@ def logic(nsr):
         final.append((value, xmore, weapon,))
        
     final.sort(reverse=True)
-    print final
     return final
 
 if __name__ == '__main__':
