@@ -1,4 +1,4 @@
-import urllib
+import urllib.request
 import json
 
 # TODO: Check for Platinum Stars that have already been awarded
@@ -14,9 +14,9 @@ def retrievestats():
     
     URL = "http://api.bfbcs.com/api/" + platform + "?players=" + players + "&fields=" + fields
     
-    f = urllib.urlopen(URL)
-    stats = json.load(f)
-    f.close()
+    f = urllib.request.urlopen(URL).read()
+    stats = json.loads(f.decode("utf-8"))
+    #f.close()
     
     return stats
 
