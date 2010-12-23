@@ -26,7 +26,7 @@ def printbasics(stats):
     
     for player in stats[u'players']:
         comingup = []   
-        # print u"%(name)s, rank %(rank)d." % player
+        print u"%(name)s, rank %(rank)d." % player
         for weapon in player[u'weapons']:
             kills = player[u'weapons'][weapon][u'kills']
             needxmore = nextstar(kills)
