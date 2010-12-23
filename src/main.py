@@ -85,3 +85,4 @@ def logic(nsr):
 if __name__ == '__main__':
     stats = retrievestats()
     printbasics(stats)
+
