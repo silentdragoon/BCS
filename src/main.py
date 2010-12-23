@@ -1,3 +1,7 @@
+import sys
+if sys.version_info[0]!=3:
+    sys.exit("BCS needs Python 3.0")
+
 import urllib.request
 import json
 
