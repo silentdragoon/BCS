@@ -7,13 +7,19 @@ import json
 
 # TODO: Check for Platinum Stars that have already been awarded
 # TODO: Add some error handling for incorrectly-typed usernames
-# TODO: Add in some form of user input
 # TODO: Add in some memory between program runs
 
 def retrievestats():
+
+    print("Welcome to BCS.")
+    platform = input("What platform? PC|360|PS3. Default is PC. ")
+    players = input("What players? Separate with commas. Default is devs. ")
+
     
-    platform = "PC"
-    players = "VelocityGirl,Irnn"
+    if platform == "": platform = "PC"
+    if players == "": players = "VelocityGirl,Irnn"
+
+
     fields = "weapons"
     
     URL = "http://api.bfbcs.com/api/" + platform + "?players=" + players + "&fields=" + fields
@@ -40,7 +46,7 @@ def printbasics(stats):
     return
 
 def prettify(final):
-    print("Next 5 Stars to Acquire")
+    print("Next 5 Stars")
     for index, item in enumerate(final):
         if index > 4: break
         value = item[0]
