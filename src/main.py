@@ -21,14 +21,14 @@ def retrievestats():
     return stats
 
 def printbasics(stats):
-    print "You're returning data for these players:"
+    print("You're returning data for these players:")
     
     
-    for player in stats[u'players']:
+    for player in stats['players']:
         comingup = []   
-        print u"%(name)s, rank %(rank)d." % player
-        for weapon in player[u'weapons']:
-            kills = player[u'weapons'][weapon][u'kills']
+        print("%(name)s, rank %(rank)d." % player)
+        for weapon in player['weapons']:
+            kills = player['weapons'][weapon]['kills']
             needxmore = nextstar(kills)
             comingup.append((needxmore,kills,str(weapon)))
         comingup.sort()
@@ -36,13 +36,13 @@ def printbasics(stats):
     return
 
 def prettify(final):
-    print "Next 5 Stars to Acquire"
+    print("Next 5 Stars to Acquire")
     for index, item in enumerate(final):
         if index > 4: break
         value = item[0]
         kills = item[1]
         name = item[2]
-        print str(index+1) + ". " + name + " - " + str(kills) + " more kills, overall value is " + str(value)
+        print(str(index+1) + ". " + name + " - " + str(kills) + " more kills, overall value is " + str(value))
 
 
     return
